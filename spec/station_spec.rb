@@ -18,12 +18,12 @@ describe Station do
 		end
 
 		it "should allow a passenger to leave the station" do
-			station.hold(passenger)
 			station.alight(passenger)
 			expect(station.people).to eq([])
 		end
 
 #add a capacity method
+#person cannot enter station if tapped in is false
 	end
 
 	context "Trains" do
@@ -38,7 +38,6 @@ describe Station do
 		end
 
 		it "should be able to leave the station" do
-			station.dock(train)
 			station.release(train)
 			expect(station.trains).to eq([])
 		end

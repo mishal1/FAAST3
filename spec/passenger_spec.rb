@@ -17,8 +17,6 @@ describe Passenger do
 	end
 
 	it "should be able to leave the station" do
-		allow(station).to receive(:hold).with(passenger)
-		passenger.tap_into(station)
 		allow(station).to receive(:release).with(passenger)
 		passenger.tap_out_of(station)
 		expect(passenger.tapped_in?).to be false
@@ -35,3 +33,5 @@ describe Passenger do
 	end
 
 end
+
+#should have some type of payment system
