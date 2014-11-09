@@ -8,6 +8,7 @@ class Station
 	end
 
 	def hold(passenger)
+		return raise "You aren't tapped into the station" if !passenger.tapped_in?
 		people << passenger
 	end
 
@@ -33,6 +34,7 @@ class Station
 	end
 
 	def empty(carriage)
+		return raise "The train must be in the station to leave it" if trains.count ==0
 		carriage.move_to(self)
 	end
 

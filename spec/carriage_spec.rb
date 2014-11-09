@@ -5,8 +5,6 @@ describe Carriage do
 	let(:carriage)  	{Carriage.new     }
 	let(:passenger) 	{double :passenger}
 	let(:station)		{double :station  }
-	# let(:station_with_train)	{double :station  }
-	# let(:train)					{double :train, :in_station => true}
 
 	it "should have no passengers when created" do
 		expect(carriage.people).to eq([])
@@ -29,7 +27,5 @@ describe Carriage do
 	
 end
 
-
-# should allow people on the train when the train is in the station
-# should allow people off the train when the train is in the station
 #all the passengers should board/leave the carriage
+#changes methods to private

@@ -2,10 +2,11 @@ require 'station'
 
 describe Station do
 
-	let(:station)   {Station.new      }
-	let(:passenger) {double :passenger}
-	let(:train)		{double :train    }
-	let(:carriage)	{double :carriage, :people => [passenger]}
+	let(:station)   			{Station.new      }
+	let(:passenger) 			{double :passenger, :tapped_in? => true}
+	let(:passenger_not_tapped)	{double :passenger, :tapped_in? => false}
+	let(:train)					{double :train    }
+	let(:carriage)				{double :carriage, :people => [passenger]}
 	
 	context "Passengers" do
 
@@ -23,8 +24,11 @@ describe Station do
 			expect(station.people).to eq([])
 		end
 
+		it "should not allow people to enter the station if they are not tapped in" do
+			expect{station.hold(passenger_not_tapped)}.to raise_error(RuntimeError)
+		end
+
 #add a capacity method
-#person cannot enter station if tapped in is false
 	end
 
 	context "Trains" do
@@ -79,11 +83,9 @@ describe Station do
 			station.empty(carriage)
 		end
 
-		it "there should be one person in the station after carriage emptied" do
-			station.dock(train)
+		it "should not allow passengers to get out of the train if there is no train in that station" do
 			allow(carriage).to receive(:move_to).with(station)
-			station.empty(carriage)
-			expect(station.people.count).to eq(1)
+			expect{station.empty(carriage)}.to raise_error(RuntimeError)
 		end
 
 	end
