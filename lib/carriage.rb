@@ -16,7 +16,14 @@ class Carriage
 	end
 
 	def alight(passenger)
-		people.delete(passenger)
+			people.delete(passenger)
+	end
+
+	def move_to(station)
+		people.each do |passenger|
+			station.hold(passenger)
+			alight(passenger)
+		end
 	end
 
 end

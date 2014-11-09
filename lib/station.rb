@@ -24,4 +24,16 @@ class Station
 		trains.delete(train)
 	end
 
+	def board(carriage)
+		return raise "There is no train in the station to board" if trains.count == 0
+		people.each do |passenger| 
+			carriage.hold(passenger)
+			alight(passenger)
+		end
+	end
+
+	def empty(carriage)
+		carriage.move_to(self)
+	end
+
 end

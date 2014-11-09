@@ -17,7 +17,7 @@ describe Passenger do
 	end
 
 	it "should be able to leave the station" do
-		allow(station).to receive(:release).with(passenger)
+		allow(station).to receive(:alight).with(passenger)
 		passenger.tap_out_of(station)
 		expect(passenger.tapped_in?).to be false
 	end
@@ -28,10 +28,11 @@ describe Passenger do
 	end
 
 	it "should automatically move out of the station when tapped out" do
-		expect(station).to receive(:release).with(passenger)
+		expect(station).to receive(:alight).with(passenger)
 		passenger.tap_out_of(station)
 	end
 
 end
 
 #should have some type of payment system
+#cannot tap out unless in the station

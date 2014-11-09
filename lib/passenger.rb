@@ -15,7 +15,7 @@ class Passenger
 
 	def tap_out_of(station)
 		@tapped_in = false
-		station.release(self)
+		station.alight(self)
 	end
 
 end

@@ -2,10 +2,10 @@ require 'carriage'
 
 describe Carriage do
 
-	let(:carriage)  			{Carriage.new     }
-	let(:passenger) 			{double :passenger}
-	# let(:station_without_train)	{double :station  }
-	let(:station_with_train)	{double :station  }
+	let(:carriage)  	{Carriage.new     }
+	let(:passenger) 	{double :passenger}
+	let(:station)		{double :station  }
+	# let(:station_with_train)	{double :station  }
 	# let(:train)					{double :train, :in_station => true}
 
 	it "should have no passengers when created" do
@@ -26,16 +26,10 @@ describe Carriage do
 		40.times {carriage.hold(passenger)}
 		expect{carriage.hold(passenger)}.to raise_error(RuntimeError)
 	end
-
-	# it "should only allow people to board the train when it is in the station" do
-
-	# end
 	
 end
 
-# hold passengers
-# release passengers
+
 # should allow people on the train when the train is in the station
 # should allow people off the train when the train is in the station
-# have a capacity of 40
 #all the passengers should board/leave the carriage
