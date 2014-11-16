@@ -6,12 +6,8 @@ class Carriage
 		@people = []
 	end
 
-	def count
-		@people.count
-	end
-
 	def hold(passenger)
-		raise "The train is full" if count == 40
+		raise "The train is full" if people.count == 40
 		people << passenger
 	end
 
@@ -19,7 +15,7 @@ class Carriage
 			people.delete(passenger)
 	end
 
-	def move_to(station)
+	def all_move_to(station)
 		people.each do |passenger|
 			station.hold(passenger)
 			alight(passenger)

@@ -6,22 +6,14 @@ describe Train do
 	let(:station)  {double :station}
 	let(:carriage) {double :carriage}
 
-	it "should not be in the station when created" do
-		expect(train.inside_of_station?).to be false
-	end
-
 	it "should be able to enter a station" do
-		allow(station).to receive(:dock).with(train)
+		expect(station).to receive(:dock).with(train)
 		train.stop_at(station)
-		expect(train.inside_of_station?).to be true
 	end
 
 	it "should be able to leave a station" do
-		allow(station).to receive(:dock).with(train)
-		train.stop_at(station)
-		allow(station).to receive(:release).with(train)
+		expect(station).to receive(:release).with(train)
 		train.move_out_of(station)
-		expect(train.inside_of_station?).to be false
 	end
 
 	it "should dock in the station" do
