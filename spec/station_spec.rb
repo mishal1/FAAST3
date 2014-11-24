@@ -1,4 +1,5 @@
 require 'station'
+require_relative 'passenger_holder_spec'
 
 describe Station do
 
@@ -8,21 +9,9 @@ describe Station do
 	let(:train)					{double :train    }
 	let(:carriage)				{double :carriage, :people => [passenger]}
 	
+	it_behaves_like 'PassengerHolder'
+
 	context "Passengers" do
-
-		it "should have no people in the station when created" do
-			expect(station.people).to eq([])
-		end	
-
-		it "should be able to hold a passenger in the station" do
-			station.hold(passenger)
-			expect(station.people).to eq([passenger])
-		end
-
-		it "should allow a passenger to leave the station" do
-			station.alight(passenger)
-			expect(station.people).to eq([])
-		end
 
 		it "should not allow people to enter the station if they are not tapped in" do
 			expect{station.hold(passenger_not_tapped)}.to raise_error(RuntimeError)
@@ -88,22 +77,26 @@ describe Station do
 		end
 
 		it "should allow a specific passenger onto the carriage" do
+			station.dock(train)
 			expect(carriage).to receive(:hold).with(passenger)
 			station.board(carriage, passenger)
 		end
 
 		it "should have one less passenger in the station" do
+			station.dock(train)
 			station.hold(passenger)
 			allow(carriage).to receive(:hold).with(passenger)
 			expect{station.board(carriage, passenger)}.to change{station.people.count}.by(-1)
 		end
 
 		it "should have allow a specific person to leave the carriage" do
+			station.dock(train)
 			expect(carriage).to receive(:alight).with(passenger)
 			station.empty(carriage, passenger)
 		end
 
 		it "should have one more passenger in the station" do
+			station.dock(train)
 			allow(carriage).to receive(:alight).with(passenger)
 			expect{station.empty(carriage, passenger)}.to change{station.people.count}.from(0).to(1)
 		end

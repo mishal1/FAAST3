@@ -1,24 +1,13 @@
 require 'carriage'
+require_relative 'passenger_holder_spec'
 
 describe Carriage do
 
 	let(:carriage)  	{Carriage.new     }
-	let(:passenger) 	{double :passenger}
+	let(:passenger) 	{double :passenger, :tapped_in? => true}
 	let(:station)		{double :station  }
 
-	it "should have no passengers when created" do
-		expect(carriage.people).to eq([])
-	end
-
-	it "should hold passengers" do
-		carriage.hold(passenger)
-		expect(carriage.people).to eq([passenger])
-	end
-
-	it "should allow passengers to leave the train" do
-		carriage.alight(passenger)
-		expect(carriage.people).to eq([])
-	end
+	it_behaves_like 'PassengerHolder'
 
 	it "should have a capcity of 40" do
 		40.times {carriage.hold(passenger)}
