@@ -1,6 +1,6 @@
 class Train
 
-	attr_accessor :carriages
+	attr_reader :carriages
 
 	def initialize
 		@carriages = []
@@ -23,5 +23,3 @@ class Train
 	end
 
 end
-
-#carriages can attach to any train even if already attached

@@ -2,7 +2,7 @@ require 'passenger_holder'
 class Carriage
 	include PassengerHolder
 
-	attr_accessor :people
+	attr_reader :people
 
 	def initialize
 		@people = []

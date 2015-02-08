@@ -20,10 +20,3 @@ shared_examples "PassengerHolder" do
 	end
 	
 end
-
-#should hold people
-#should release people
-#should know when it is full
-#should know when it is empty
-
-#it behaves like passenger_holder
